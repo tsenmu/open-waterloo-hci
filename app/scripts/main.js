@@ -1,3 +1,5 @@
+'use strict';
+
 var videos = [
     'hrMkPq4uxJs',
     'lebeVS0oXtc',
@@ -59,15 +61,11 @@ function onPlayerReady(event) {
 
 function onPlayerStateChange(event) {
     console.log(event.data);
-    if (event.data == YT.PlayerState.ENDED) {
+    if (event.data === YT.PlayerState.ENDED) {
         if (videoIndex >= videos.length) {
             videoIndex = 0;
         }
-        event.target.loadVideoById(videos[videoIndex++])
+        event.target.loadVideoById(videos[videoIndex++]);
         event.target.playVideo();
     }
-}
-
-window.onload = function () {
-
 }
