@@ -20,9 +20,9 @@ var videos = [
 var videoIndex = 0;
 
 function onYouTubeIframeAPIReady() {
-    const rowNumber = 2;
+    const rowNumber = 3;
     const colNumber = 3;
-    let rootElement = document.getElementById('root');
+    let rootElement = document.getElementById('demo');
 
 
     for (let i = 0; i < rowNumber; ++i) {
