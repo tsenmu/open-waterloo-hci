@@ -15,5 +15,11 @@ body {
   background-color: black;
 }
 
+#video, #canvas {
+    top: 0;
+    position: fixed;
+    z-index: 100;
+    opacity: 1;
+}
 
 

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>open waterloo hci</title>
+    <title>Open Waterloo HCI</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -28,26 +28,29 @@
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    
-    <div class="container" id="demo">
+
+    <div class="container-fluid">
+        <div id="viewport">
+            <video id="video" width="320" height="240" preload autoplay loop muted></video>
+            <canvas id="canvas" width="320" height="240"></canvas>
+        </div>
+    </div>
+
+    <div class="container-fluid" id="demo">
 
     </div>
-    
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='https://www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/threejs/build/three.js"></script>
+    <script src="/bower_components/tracking/build/tracking.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+    <script src="/bower_components/tracking/build/data/eye-min.js"></script>
+    <script src="/bower_components/tracking/build/data/face-min.js"></script>
+    <script src="/bower_components/tracking/build/data/mouth-min.js"></script>
+    <script src="/bower_components/tracking/examples/assets/fish_tank/FishTankRenderer.js"></script>
     
     <!-- build:js scripts/plugins.js -->
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
