@@ -72,25 +72,25 @@ function rgb2hsv (r,g,b) {
 function initTracking() {
     var faceX = 0;
     var faceY = 0;
-    // var tracker = new tracking.ObjectTracker('face');
-    // tracker.setInitialScale(4);
-    // tracker.setStepSize(2);
-    // tracking.track('#video', tracker, { camera: true });
-    // tracker.on('track', onFaceMove);
-    tracking.ColorTracker.registerColor('skin', function(r,g,b) {
-      let hsv = rgb2hsv(r, g, b);
-      let h = hsv[0];
-      let s = hsv[1];
-      let v = hsv[2];
-      if (v >= 15 && v <= 250 && h >= 3 && h <= 33) {
-        return true;
-      }
-      return false;
-    });
-
-    var tracker = new tracking.ColorTracker('skin');
+    var tracker = new tracking.ObjectTracker('face');
+    tracker.setInitialScale(1);
+    tracker.setStepSize(2);
     tracking.track('#video', tracker, { camera: true });
     tracker.on('track', onFaceMove);
+
+    // tracking.ColorTracker.registerColor('skin', function(r,g,b) {
+    //   let hsv = rgb2hsv(r, g, b);
+    //   let h = hsv[0];
+    //   let s = hsv[1];
+    //   let v = hsv[2];
+    //   if (v >= 15 && v <= 250 && h >= 3 && h <= 33) {
+    //     return true;
+    //   }
+    //   return false;
+    // });
+    // var tracker = new tracking.ColorTracker('skin');
+    // tracking.track('#video', tracker, { camera: true });
+    // tracker.on('track', onFaceMove);
 
     container = document.getElementById('viewport');
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 3000);
@@ -198,14 +198,6 @@ function initDemos() {
         }
     } 
 }
-
-// function onYouTubeIframeAPIReady() {
-//     for (let i = 0; i < rowNumber; ++i) {
-//         for (let j = 0; j < colNumber; ++j) {
-
-//         }
-//     }
-// }
 
 function onPlayerReady(event) {
     event.target.mute();
