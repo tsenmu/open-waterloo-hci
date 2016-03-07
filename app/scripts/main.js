@@ -138,7 +138,7 @@ function onFaceMove(event) {
   var maxRect;
   var maxRectArea = 0;
   event.data.forEach(function(rect) {
-    if (rect.width * rect.height > maxRectArea){
+    if (rect.x > 2 && rect.width * rect.height > maxRectArea){
       maxRectArea = rect.width * rect.height;
       maxRect = rect;
     }
