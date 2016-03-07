@@ -71,10 +71,11 @@ function rgb2hsv (r,g,b) {
 
 function initTracking() {
     var faceX = 0;
-    var faceY = 0;
+    var faceY = 0;    
+
     var tracker = new tracking.ObjectTracker('face');
     tracker.setInitialScale(1);
-    tracker.setStepSize(2);
+    tracker.setStepSize(4);
     tracking.track('#video', tracker, { camera: true });
     tracker.on('track', onFaceMove);
 
@@ -118,7 +119,7 @@ function initTracking() {
     }
     renderer = new THREE.CanvasRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight / 3);
-    renderer.setClearColorHex(0xffffff, 1);
+    renderer.setClearColor(0xffffff, 1);
     container.appendChild(renderer.domElement);
     window.addEventListener('resize', onWindowResize, false);
 }
@@ -216,7 +217,7 @@ function onPlayerStateChange(event) {
 }
 
 window.onload = function() {
-    initDemos();
+    // initDemos();
     initTracking();
     animate();
 }
