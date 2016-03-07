@@ -30,12 +30,65 @@ var context = canvas.getContext('2d');
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
+// http://www.javascripter.net/faq/rgb2hsv.htm
+function rgb2hsv (r,g,b) {
+ var computedH = 0;
+ var computedS = 0;
+ var computedV = 0;
+
+ //remove spaces from input RGB values, convert to int
+ var r = parseInt( (''+r).replace(/\s/g,''),10 ); 
+ var g = parseInt( (''+g).replace(/\s/g,''),10 ); 
+ var b = parseInt( (''+b).replace(/\s/g,''),10 ); 
+
+ if ( r==null || g==null || b==null ||
+     isNaN(r) || isNaN(g)|| isNaN(b) ) {
+   alert ('Please enter numeric RGB values!');
+   return;
+ }
+ if (r<0 || g<0 || b<0 || r>255 || g>255 || b>255) {
+   alert ('RGB values must be in the range 0 to 255.');
+   return;
+ }
+ r=r/255; g=g/255; b=b/255;
+ var minRGB = Math.min(r,Math.min(g,b));
+ var maxRGB = Math.max(r,Math.max(g,b));
+
+ // Black-gray-white
+ if (minRGB==maxRGB) {
+  computedV = minRGB;
+  return [0,0,computedV];
+ }
+
+ // Colors other than black-gray-white:
+ var d = (r==minRGB) ? g-b : ((b==minRGB) ? r-g : b-r);
+ var h = (r==minRGB) ? 3 : ((b==minRGB) ? 1 : 5);
+ computedH = 60*(h - d/(maxRGB - minRGB));
+ computedS = (maxRGB - minRGB)/maxRGB;
+ computedV = maxRGB;
+ return [computedH,computedS * 255,computedV * 255];
+}
+
 function initTracking() {
     var faceX = 0;
     var faceY = 0;
-    var tracker = new tracking.ObjectTracker('face');
-    tracker.setInitialScale(4);
-    tracker.setStepSize(2);
+    // var tracker = new tracking.ObjectTracker('face');
+    // tracker.setInitialScale(4);
+    // tracker.setStepSize(2);
+    // tracking.track('#video', tracker, { camera: true });
+    // tracker.on('track', onFaceMove);
+    tracking.ColorTracker.registerColor('skin', function(r,g,b) {
+      let hsv = rgb2hsv(r, g, b);
+      let h = hsv[0];
+      let s = hsv[1];
+      let v = hsv[2];
+      if (v >= 15 && v <= 250 && h >= 3 && h <= 33) {
+        return true;
+      }
+      return false;
+    });
+
+    var tracker = new tracking.ColorTracker('skin');
     tracking.track('#video', tracker, { camera: true });
     tracker.on('track', onFaceMove);
 
@@ -51,7 +104,7 @@ function initTracking() {
     }
     group = new THREE.Object3D();
     scene.add(group);
-    for (var i = 0; i < 1000; i++) {
+    for (var i = 0; i < 500; i++) {
         var material = new THREE.SpriteCanvasMaterial({
           color: Math.random() * 0x808008 + 0x808080,
           program: program
