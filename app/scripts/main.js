@@ -30,7 +30,7 @@ var context = canvas.getContext('2d');
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
-function init() {
+function initTracking() {
     var faceX = 0;
     var faceY = 0;
     var tracker = new tracking.ObjectTracker('face');
@@ -68,12 +68,13 @@ function init() {
     container.appendChild(renderer.domElement);
     window.addEventListener('resize', onWindowResize, false);
 }
+
 function onWindowResize() {
     windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight / 3);
 }
 
 function onFaceMove(event) {
@@ -102,6 +103,7 @@ function onFaceMove(event) {
     context.fillText('y: ' + maxRect.y + 'px', maxRect.x + maxRect.width + 5, maxRect.y + 22);
   }
 }
+
 function animate() {
   window.requestAnimationFrame(animate);
   render();
@@ -113,19 +115,11 @@ function render() {
   renderer.render(scene, camera);
 }
 
-window.onload = function() {
-    init();
-    animate();
-}
+const rowNumber = 3;
+const colNumber = 3;
 
-
-
-function onYouTubeIframeAPIReady() {
-    const rowNumber = 3;
-    const colNumber = 3;
+function initDemos() {
     let rootElement = document.getElementById('demo');
-
-
     for (let i = 0; i < rowNumber; ++i) {
         let rowDivElement = document.createElement('div');
         rowDivElement.className = 'row';
@@ -136,10 +130,8 @@ function onYouTubeIframeAPIReady() {
             let playerElement = document.createElement('div');
             playerElement.id = 'player' + i + j;
             playerElement.className = 'player';
-
             colDivElement.appendChild(playerElement);
             rowDivElement.appendChild(colDivElement);
-
             let player = new YT.Player('player' + i + j, {
               height: 390,
               width: 480,
@@ -150,8 +142,16 @@ function onYouTubeIframeAPIReady() {
               }
             });
         }
-    }
+    } 
 }
+
+// function onYouTubeIframeAPIReady() {
+//     for (let i = 0; i < rowNumber; ++i) {
+//         for (let j = 0; j < colNumber; ++j) {
+
+//         }
+//     }
+// }
 
 function onPlayerReady(event) {
     event.target.mute();
@@ -167,4 +167,10 @@ function onPlayerStateChange(event) {
         event.target.loadVideoById(videos[videoIndex++]);
         event.target.playVideo();
     }
+}
+
+window.onload = function() {
+    initDemos();
+    initTracking();
+    animate();
 }
