@@ -118,6 +118,7 @@ function initTracking() {
     }
     renderer = new THREE.CanvasRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight / 3);
+    renderer.setClearColorHex(0xffffff, 1);
     container.appendChild(renderer.domElement);
     window.addEventListener('resize', onWindowResize, false);
 }
