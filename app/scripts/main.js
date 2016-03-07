@@ -64,7 +64,7 @@ function init() {
         group.add(particle);
     }
     renderer = new THREE.CanvasRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(window.innerWidth, window.innerHeight / 3);
     container.appendChild(renderer.domElement);
     window.addEventListener('resize', onWindowResize, false);
 }
@@ -120,51 +120,51 @@ window.onload = function() {
 
 
 
-// function onYouTubeIframeAPIReady() {
-//     const rowNumber = 3;
-//     const colNumber = 3;
-//     let rootElement = document.getElementById('demo');
+function onYouTubeIframeAPIReady() {
+    const rowNumber = 3;
+    const colNumber = 3;
+    let rootElement = document.getElementById('demo');
 
 
-//     for (let i = 0; i < rowNumber; ++i) {
-//         let rowDivElement = document.createElement('div');
-//         rowDivElement.className = 'row';
-//         rootElement.appendChild(rowDivElement);
-//         for (let j = 0; j < colNumber; ++j) {
-//             let colDivElement = document.createElement('div');
-//             colDivElement.className = 'col-md-4';
-//             let playerElement = document.createElement('div');
-//             playerElement.id = 'player' + i + j;
-//             playerElement.className = 'player';
+    for (let i = 0; i < rowNumber; ++i) {
+        let rowDivElement = document.createElement('div');
+        rowDivElement.className = 'row';
+        rootElement.appendChild(rowDivElement);
+        for (let j = 0; j < colNumber; ++j) {
+            let colDivElement = document.createElement('div');
+            colDivElement.className = 'col-md-4';
+            let playerElement = document.createElement('div');
+            playerElement.id = 'player' + i + j;
+            playerElement.className = 'player';
 
-//             colDivElement.appendChild(playerElement);
-//             rowDivElement.appendChild(colDivElement);
+            colDivElement.appendChild(playerElement);
+            rowDivElement.appendChild(colDivElement);
 
-//             let player = new YT.Player('player' + i + j, {
-//               height: 390,
-//               width: 480,
-//               videoId: videos[videoIndex++],
-//               events: {
-//                 'onReady': onPlayerReady,
-//                 'onStateChange': onPlayerStateChange
-//               }
-//             });
-//         }
-//     }
-// }
+            let player = new YT.Player('player' + i + j, {
+              height: 390,
+              width: 480,
+              videoId: videos[videoIndex++],
+              events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+              }
+            });
+        }
+    }
+}
 
-// function onPlayerReady(event) {
-//     event.target.mute();
-//     event.target.playVideo();
-// }
+function onPlayerReady(event) {
+    event.target.mute();
+    event.target.playVideo();
+}
 
-// function onPlayerStateChange(event) {
-//     console.log(event.data);
-//     if (event.data === YT.PlayerState.ENDED) {
-//         if (videoIndex >= videos.length) {
-//             videoIndex = 0;
-//         }
-//         event.target.loadVideoById(videos[videoIndex++]);
-//         event.target.playVideo();
-//     }
-// }
+function onPlayerStateChange(event) {
+    console.log(event.data);
+    if (event.data === YT.PlayerState.ENDED) {
+        if (videoIndex >= videos.length) {
+            videoIndex = 0;
+        }
+        event.target.loadVideoById(videos[videoIndex++]);
+        event.target.playVideo();
+    }
+}
