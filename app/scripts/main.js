@@ -138,7 +138,7 @@ function onFaceMove(event) {
   var maxRect;
   var maxRectArea = 0;
   event.data.forEach(function(rect) {
-    if (rect.x > 2 && rect.width * rect.height > maxRectArea){
+    if (rect.width * rect.height > maxRectArea){
       maxRectArea = rect.width * rect.height;
       maxRect = rect;
     }
@@ -146,8 +146,8 @@ function onFaceMove(event) {
   if (maxRectArea > 0) {
     var rectCenterX = maxRect.x + (maxRect.width/2);
     var rectCenterY = maxRect.y + (maxRect.height/2);
-    mouseX = (rectCenterX - 160) * (window.innerWidth/320) * 10;
-    mouseY = (rectCenterY - 120) * (window.innerHeight/240) * 10;
+    mouseX = (rectCenterX - 160) * (window.innerWidth / 320) * 10;
+    mouseY = (rectCenterY - 120) * (window.innerHeight / 3 / 240) * 10;
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.strokeStyle = maxRect.color;
     context.strokeRect(maxRect.x, maxRect.y, maxRect.width, maxRect.height);
