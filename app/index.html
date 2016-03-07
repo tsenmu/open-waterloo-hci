@@ -30,6 +30,8 @@
     <![endif]-->
     <img id="logo" src="images/hci.png">
 
+    <canvas data-processing-sources="scripts/processing.pde"></canvas>
+
     <div class="container-fluid">
         <div id="viewport">
             <video id="video" width="320" height="240" preload autoplay loop muted></video>
@@ -46,11 +48,13 @@
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/threejs/build/three.js"></script>
     <script src="/bower_components/tracking/build/tracking.js"></script>
+    <script src="/bower_components/Processing.js/processing.js"></script>
     <!-- endbower -->
+    <script src="/bower_components/tracking/build/data/eye-min.js"></script>
+    <script src="/bower_components/tracking/build/data/face-min.js"></script>
+    <script src="/bower_components/tracking/build/data/mouth-min.js"></script>
     <!-- endbuild -->
-    <script src="bower_components/tracking/build/data/eye-min.js"></script>
-    <script src="bower_components/tracking/build/data/face-min.js"></script>
-    <script src="bower_components/tracking/build/data/mouth-min.js"></script>
+
     
     <!-- build:js scripts/plugins.js -->
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
@@ -68,6 +72,8 @@
     <!-- endbuild -->
     
     <!-- build:js scripts/main.js -->
+    <script src="scripts/tracking.js"></script>
+    <script src="scripts/demos.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
   </body>

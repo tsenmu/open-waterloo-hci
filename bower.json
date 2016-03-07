@@ -4,7 +4,8 @@
   "dependencies": {
     "bootstrap-sass": "~3.3.5",
     "modernizr": "~2.8.1",
-    "tracking": "^1.1.2"
+    "tracking": "^1.1.2",
+    "Processing.js": "^1.4.16"
   },
   "overrides": {
     "bootstrap-sass": {

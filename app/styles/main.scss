@@ -16,6 +16,7 @@ body {
 }
 
 #video, #canvas {
+    display: none;
     top: 0;
     left: 50%;
     margin-left: -160px;

@@ -88,14 +88,12 @@ gulp.task('extras', () => {
   }).pipe(gulp.dest('dist'));
 });
 
-gulp.task('manual', () => {
+gulp.task('pde', () => {
   return gulp.src([
-    'bower_components/tracking/build/data/face-min.js',
-    'bower_components/tracking/build/data/eye-min.js',
-    'bower_components/tracking/build/data/mouth-min.js'
-  ], {
-    dot: true
-  }).pipe(gulp.dest('dist/bower_components/tracking/build/data/'));
+    'app/scripts/**/*.pde'
+    ], {
+      dot: true
+    }).pipe(gulp.dest('dist/scripts'));
 });
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
@@ -169,7 +167,7 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'extras', 'manual'], () => {
+gulp.task('build', ['html', 'images', 'fonts', 'extras', 'pde'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
