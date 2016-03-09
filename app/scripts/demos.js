@@ -50,7 +50,7 @@ function initDemos() {
             rowDivElement.appendChild(colDivElement);
             let player = new YT.Player('player' + i + j, {
               height: 480,
-              width: 580,
+              width: 500,
               videoId: videos[videoIndex++],
               events: {
                 'onReady': onPlayerReady,
