@@ -29,6 +29,9 @@ function initDemos() {
     for (let i = 0; i < rowNumber; ++i) {
         let rowDivElement = document.createElement('div');
         rowDivElement.className = 'row';
+        if (i > 0) {
+            rowDivElement.style = 'position: relative; top: -' + i * 120 + 'px;';
+        }
         rootElement.appendChild(rowDivElement);
         for (let j = 0; j < colNumber; ++j) {
             let colDivElement = document.createElement('div');
