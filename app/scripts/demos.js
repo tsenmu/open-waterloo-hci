@@ -22,7 +22,7 @@ var videos = [
 var videoIndex = 0;
 
 const rowNumber = 3;
-const colNumber = 3;
+const colNumber = 2; 
 
 function initDemos() {
     let rootElement = document.getElementById('demo');
@@ -32,20 +32,28 @@ function initDemos() {
         rootElement.appendChild(rowDivElement);
         for (let j = 0; j < colNumber; ++j) {
             let colDivElement = document.createElement('div');
-            colDivElement.className = 'col-md-4';
+            colDivElement.className = 'col-md-6 demo-tile';
             let playerElement = document.createElement('div');
             playerElement.id = 'player' + i + j;
             playerElement.className = 'player';
+
+            let mask_before = document.createElement('div');
+            mask_before.className = 'player-mask-before player-mask';
+            let mask_after = document.createElement('div');
+            mask_after.className = 'player-mask-after player-mask';
+            colDivElement.appendChild(mask_before);
             colDivElement.appendChild(playerElement);
+            colDivElement.appendChild(mask_after);
             rowDivElement.appendChild(colDivElement);
             let player = new YT.Player('player' + i + j, {
-              height: 390,
-              width: 360,
+              height: 480,
+              width: 640,
               videoId: videos[videoIndex++],
               events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
-              }
+              },
+              playerVars: { 'autoplay': 1, 'controls': 0, 'rel': 0, 'showinfo': 0, 'modestbranding': 1}
             });
         }
     } 
@@ -57,12 +65,13 @@ function onPlayerReady(event) {
 }
 
 function onPlayerStateChange(event) {
-    console.log(event.data);
     if (event.data === YT.PlayerState.ENDED) {
         if (videoIndex >= videos.length) {
             videoIndex = 0;
         }
         event.target.loadVideoById(videos[videoIndex++]);
         event.target.playVideo();
+    } else if (event.data === YT.PlayerState.PLAYING) {
+        let head = event.target.getIframe().contentWindow;
     }
 }

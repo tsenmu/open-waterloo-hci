@@ -32,4 +32,26 @@ body {
     width: 320px;
 }
 
+.demo-tile {
+    position: relative;
+}
+
+.player-mask {
+    width: 100%;
+    height: 60px;
+    background-color: black;
+}
+
+
+.player-mask-before {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.player-mask-after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
 
